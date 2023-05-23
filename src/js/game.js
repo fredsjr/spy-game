@@ -12,7 +12,6 @@ export class Game extends Engine {
 
     constructor() {
         super({ width: 1630, height: 830, backgroundColor: Color.Black });
-        this.showDebug(true);
         this.start(ResourceLoader).then(() => this.startGame());
     }
 
