@@ -1,6 +1,8 @@
 import { Actor, Engine, Vector, Label, Color, Font, vec, Sound } from "excalibur";
 
 import { Resources, ResourceLoader } from "./resources.js";
+import { Spycrab } from './spycrab.js';
+import { hoovy } from './hoovy.js';
 
 export class Game extends Engine {
     constructor() {
@@ -19,39 +21,27 @@ export class Game extends Engine {
         background.graphics.use(Resources.fort.toSprite())
         this.add(background)
 
-        for (let i = 0; i < 10; i++) {
-            const Spycrab = new Actor({
-                width: Resources.spyCrab.width,
-                height: Resources.spyCrab.height,
-            });
-            Spycrab.graphics.use(Resources.spyCrab.toSprite());
-
-            // const x = this.halfDrawWidth
-            Spycrab.pos = new Vector(
-                Math.random() * this.drawWidth,
-                Math.random() * this.drawHeight
-            );
-            Spycrab.vel = new Vector(Math.random() * 50, 0);
-            this.add(Spycrab);
-
-            Spycrab.on("pointerdown", (event) => {
-                console.log("You are dead, no big suprise");
-                Spycrab.kill();
-            });
-            Spycrab.on("pointerdown", (dead) => {
-                console.log('lol')
-                Resources.death.play(0.7);
-            });
-            background.on("pointerdown", (piss) => {
-                console.log('lol')
-                Resources.piss.play(0.7);
-            });
-            this.add(Spycrab);
-
-            const sc = 0.2;
-            Spycrab.scale = new Vector(sc, sc);
+        for (let i = 0; i < 10; i++){
+            let spy = new Spycrab({
+                pos: new Vector(
+                    Math.random() * this.drawWidth,
+                    Math.random() * this.drawHeight)
+            })
+            this.add(spy);
         }
+
+        for (let i = 0; i < 10; i++){
+            let heavy = new hoovy({
+                pos: new Vector(
+                    Math.random() * this.drawWidth,
+                    Math.random() * this.drawHeight)
+            })
+            this.add(heavy);
+        }
+
     }
+
+
 }
 
 new Game();
