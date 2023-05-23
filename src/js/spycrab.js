@@ -4,12 +4,14 @@ import {Resources} from "./resources.js";
     export class Spycrab extends Actor {
         health = 100
 
+        engine
+
         constructor() {
             super({width: Resources.spyCrab.width, height: Resources.spyCrab.height});
         }
 
         onInitialize(_engine) {
-            super.onInitialize(_engine);
+            this.engine = _engine
 
             this.graphics.use(Resources.spyCrab.toSprite());
 
@@ -24,11 +26,13 @@ import {Resources} from "./resources.js";
                 if (this.health <= 0) {
                     Resources.death.play(0.7);
                     this.kill()
+                    this.engine.updateScore()
+
                 }
             });
 
             this.vel = new Vector(Math.random() * 400 - 200, Math.random() * 400 - 200);
-            this.anchor = new Vector(1, 0);
+            this.anchor = new Vector(0.5, 0.5);
 
             const sc = 0.2;
             this.scale = new Vector(sc, sc);

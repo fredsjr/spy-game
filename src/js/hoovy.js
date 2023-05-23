@@ -4,12 +4,14 @@ import {Resources} from "./resources.js";
 export class hoovy extends Actor {
     health = 200
 
+    engine
+
     constructor() {
         super({width: Resources.hoovy.width, height: Resources.hoovy.height});
     }
 
     onInitialize(_engine) {
-        super.onInitialize(_engine);
+        this.engine = _engine
 
         this.graphics.use(Resources.hoovy.toSprite());
 
@@ -22,13 +24,14 @@ export class hoovy extends Actor {
             this.health = this.health - 100;
 
             if (this.health <= 0) {
-                Resources.heavydead.play(0.7);
+                Resources.heavydead.play(1.5);
                 this.kill()
+                this.engine.updateScore("heavy")
             }
         });
 
         this.vel = new Vector(Math.random() * 400 - 200, Math.random() * 400 - 200);
-        this.anchor = new Vector(1, 0);
+        this.anchor = new Vector(0.5, 0.5);
 
         const sc = 0.7;
         this.scale = new Vector(sc, sc);
