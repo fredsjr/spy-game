@@ -8,6 +8,9 @@ import piss from "../sounds/piss-sniper-sound-effect.mp3"
 import titleImage from "../images/game-logo.png"
 import hoovy from "../images/hoovy.png"
 import heavydead from "../sounds/heavy-death.mp3"
+import start from "../images/start.png"
+import soldiersmile from "../images/soldier_smile.png"
+import scout from "../images/scout.png"
 
 const Resources = {
     spyCrab: new ImageSource(spyCrab),
@@ -18,7 +21,10 @@ const Resources = {
     piss: new Sound(piss),
     logo: new ImageSource(titleImage),
     hoovy: new ImageSource(hoovy),
-    heavydead: new Sound(heavydead)
+    heavydead: new Sound(heavydead),
+    start: new ImageSource(start),
+    soldiersmile: new ImageSource(soldiersmile),
+    scout: new ImageSource(scout)
 };
 const ResourceLoader = new Loader([
     Resources.spyCrab,
@@ -29,7 +35,10 @@ const ResourceLoader = new Loader([
     Resources.piss,
     Resources.logo,
     Resources.hoovy,
-    Resources.heavydead
+    Resources.heavydead,
+    Resources.start,
+    Resources.soldiersmile,
+    Resources.scout
 ]);
 ResourceLoader.logo = titleImage
 ResourceLoader.logoWidth = 900

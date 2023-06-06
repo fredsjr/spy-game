@@ -5,9 +5,11 @@ import {Resources} from "./resources.js";
         health = 100
 
         engine
+        updateScore;
 
-        constructor() {
+        constructor(updateScore) {
             super({width: Resources.spyCrab.width, height: Resources.spyCrab.height});
+            this.updateScore = updateScore;
         }
 
         onInitialize(_engine) {
@@ -20,13 +22,13 @@ import {Resources} from "./resources.js";
                 Math.random() * _engine.drawHeight);
 
             this.on("pointerdown", (event) => {
-                console.log("You are dead, no big suprise");
+                console.log("You are dead, no big suprise", event);
                 this.health = this.health - 100;
 
                 if (this.health <= 0) {
                     Resources.death.play(0.7);
                     this.kill()
-                    this.engine.updateScore()
+                    this.updateScore("Spycrab")
 
                 }
             });

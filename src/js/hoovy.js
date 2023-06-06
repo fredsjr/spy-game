@@ -5,9 +5,11 @@ export class hoovy extends Actor {
     health = 200
 
     engine
+    updateScore;
 
-    constructor() {
-        super({width: Resources.hoovy.width, height: Resources.hoovy.height});
+    constructor(updateScore) {
+        super({ width: Resources.hoovy.width, height: Resources.hoovy.height });
+        this.updateScore = updateScore;
     }
 
     onInitialize(_engine) {
@@ -20,15 +22,16 @@ export class hoovy extends Actor {
             Math.random() * _engine.drawHeight);
 
         this.on("pointerdown", (event) => {
-            console.log("You are dead, no big suprise");
+            console.log("You are dead, no big suprise", event);
             this.health = this.health - 100;
 
             if (this.health <= 0) {
                 Resources.heavydead.play(1.5);
                 this.kill()
-                this.engine.updateScore("heavy")
+                this.updateScore("heavy")
             }
         });
+
 
         this.vel = new Vector(Math.random() * 400 - 200, Math.random() * 400 - 200);
         this.anchor = new Vector(0.5, 0.5);
